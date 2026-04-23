@@ -1,5 +1,4 @@
-﻿using OperationsManagement.Application.Abstractions;
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -7,7 +6,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Options;
 using OperationsManagement.Application.Abstractions.DomainEvents;
 using OperationsManagement.Application.Abstractions.IntegrationEvents;
-using OperationsManagement.Domain.Templates.Repositories;
+using OperationsManagement.Domain.Assets.Repositories;
 using OperationsManagement.Infrastructure;
 using OperationsManagement.Infrastructure.BackgroundServices;
 using OperationsManagement.Infrastructure.DomainEvents;
@@ -71,7 +70,9 @@ public static class DependencyInjection
         });
 
         builder.Services.AddScoped<IUnitOfWork>(sp => sp.GetRequiredService<ApplicationDbContext>());
-        builder.Services.AddScoped<ITemplateRepository, TemplateRepository>();
+        builder.Services.AddScoped<ISiteRepository, SiteRepository>();
+        builder.Services.AddScoped<IAreaRepository, AreaRepository>();
+        builder.Services.AddScoped<IProcessCellRepository, ProcessCellRepository>();
 
 
         return builder;
