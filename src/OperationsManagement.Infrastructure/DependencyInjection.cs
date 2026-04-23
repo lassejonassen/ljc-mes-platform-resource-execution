@@ -4,25 +4,26 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Options;
-using OperationsManagement.Application.Abstractions.DomainEvents;
-using OperationsManagement.Application.Abstractions.IntegrationEvents;
-using OperationsManagement.Domain.Assets.Repositories;
-using OperationsManagement.Infrastructure;
-using OperationsManagement.Infrastructure.BackgroundServices;
-using OperationsManagement.Infrastructure.DomainEvents;
-using OperationsManagement.Infrastructure.Messaging;
-using OperationsManagement.Infrastructure.Messaging.RabbitMq;
-using OperationsManagement.Infrastructure.Persistence.DbContexts;
-using OperationsManagement.Infrastructure.Persistence.Interceptors;
-using OperationsManagement.Infrastructure.Persistence.Repositories;
-using OperationsManagement.SharedKernel;
+using OperationsManagement.Domain.ProductionExecution.Repositories;
 using Polly;
 using Polly.CircuitBreaker;
 using Polly.Retry;
 using RabbitMQ.Client;
+using ResourceExecution.Application.Abstractions.DomainEvents;
+using ResourceExecution.Application.Abstractions.IntegrationEvents;
+using ResourceExecution.Domain.ResourceManagement.Repositories;
+using ResourceExecution.Infrastructure;
+using ResourceExecution.Infrastructure.BackgroundServices;
+using ResourceExecution.Infrastructure.DomainEvents;
+using ResourceExecution.Infrastructure.Messaging;
+using ResourceExecution.Infrastructure.Messaging.RabbitMq;
+using ResourceExecution.Infrastructure.Persistence.DbContexts;
+using ResourceExecution.Infrastructure.Persistence.Interceptors;
+using ResourceExecution.Infrastructure.Persistence.Repositories;
+using ResourceExecution.SharedKernel;
 using Serilog;
 
-namespace OperationsManagement.Infrastructure;
+namespace ResourceExecution.Infrastructure;
 
 public static class DependencyInjection
 {
@@ -70,9 +71,9 @@ public static class DependencyInjection
         });
 
         builder.Services.AddScoped<IUnitOfWork>(sp => sp.GetRequiredService<ApplicationDbContext>());
-        builder.Services.AddScoped<ISiteRepository, SiteRepository>();
+        builder.Services.AddScoped<IWorkCenterRepository, SiteRepository>();
         builder.Services.AddScoped<IAreaRepository, AreaRepository>();
-        builder.Services.AddScoped<IProcessCellRepository, ProcessCellRepository>();
+        builder.Services.AddScoped<IEquipmentClassRepository, ProcessCellRepository>();
 
 
         return builder;

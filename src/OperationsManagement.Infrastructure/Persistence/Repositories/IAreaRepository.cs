@@ -1,9 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using OperationsManagement.Domain.Assets.Aggregates;
-using OperationsManagement.Domain.Assets.Repositories;
-using OperationsManagement.Infrastructure.Persistence.DbContexts;
+using OperationsManagement.Domain.ResourceManagement.Repositories;
+using ResourceExecution.Infrastructure.Persistence.DbContexts;
 
-namespace OperationsManagement.Infrastructure.Persistence.Repositories;
+namespace ResourceExecution.Infrastructure.Persistence.Repositories;
 
 internal sealed class AreaRepository(ApplicationDbContext context)
      : Repository<Area>(context), IAreaRepository

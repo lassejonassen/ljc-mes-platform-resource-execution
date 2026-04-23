@@ -1,8 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using OperationsManagement.SharedKernel;
+using ResourceExecution.SharedKernel;
 
-namespace OperationsManagement.Infrastructure.Persistence.DbContexts;
+namespace ResourceExecution.Infrastructure.Persistence.DbContexts;
 
 public sealed class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : DbContext(options), IUnitOfWork
 {

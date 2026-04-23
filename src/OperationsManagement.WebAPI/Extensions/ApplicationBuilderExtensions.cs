@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using OperationsManagement.Infrastructure.Persistence.DbContexts;
+using ResourceExecution.Infrastructure.Persistence.DbContexts;
 
-namespace OperationsManagement.WebAPI.Extensions;
+namespace ResourceExecution.WebAPI.Extensions;
 
 public static partial class ApplicationBuilderExtensions
 {

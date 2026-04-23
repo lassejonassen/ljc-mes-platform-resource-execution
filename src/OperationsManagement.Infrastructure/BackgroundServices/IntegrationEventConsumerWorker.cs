@@ -1,13 +1,13 @@
 ﻿using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using OperationsManagement.Infrastructure.Messaging.RabbitMq;
 using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
+using ResourceExecution.Infrastructure.Messaging.RabbitMq;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace OperationsManagement.Infrastructure.BackgroundServices;
+namespace ResourceExecution.Infrastructure.BackgroundServices;
 
 public class IntegrationEventConsumerWorker : BackgroundService
 {

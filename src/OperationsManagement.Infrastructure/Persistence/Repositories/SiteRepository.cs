@@ -1,12 +1,12 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using OperationsManagement.Domain.Assets.Aggregates;
-using OperationsManagement.Domain.Assets.Repositories;
-using OperationsManagement.Infrastructure.Persistence.DbContexts;
+using ResourceExecution.Domain.ResourceManagement.Repositories;
+using ResourceExecution.Infrastructure.Persistence.DbContexts;
 
-namespace OperationsManagement.Infrastructure.Persistence.Repositories;
+namespace ResourceExecution.Infrastructure.Persistence.Repositories;
 
 internal sealed class SiteRepository(ApplicationDbContext context)
-     : Repository<Site>(context), ISiteRepository
+     : Repository<Site>(context), IWorkCenterRepository
 {
     public async Task<IReadOnlyCollection<Site>> GetAllAsync(CancellationToken cancellationToken)
     {

@@ -2,14 +2,14 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using OperationsManagement.Domain._Shared.DomainEvents;
-using OperationsManagement.Infrastructure.DomainEvents;
-using OperationsManagement.Infrastructure.Options;
-using OperationsManagement.Infrastructure.Persistence.DbContexts;
-using OperationsManagement.Infrastructure.Persistence.Entities;
+using ResourceExecution.Domain._Shared.DomainEvents;
+using ResourceExecution.Infrastructure.DomainEvents;
+using ResourceExecution.Infrastructure.Options;
+using ResourceExecution.Infrastructure.Persistence.DbContexts;
+using ResourceExecution.Infrastructure.Persistence.Entities;
 using System.Text.Json;
 
-namespace OperationsManagement.Infrastructure.BackgroundServices;
+namespace ResourceExecution.Infrastructure.BackgroundServices;
 
 public class ProcessDomainEventsJob(
     IServiceProvider serviceProvider,

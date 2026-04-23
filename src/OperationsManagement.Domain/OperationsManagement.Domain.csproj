@@ -1,5 +1,0 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
-  <ItemGroup>
-    <ProjectReference Include="..\OperationsManagement.SharedKernel\OperationsManagement.SharedKernel.csproj" />
-  </ItemGroup>
-</Project>

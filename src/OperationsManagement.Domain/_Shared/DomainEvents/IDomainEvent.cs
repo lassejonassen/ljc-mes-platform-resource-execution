@@ -1,4 +1,4 @@
-﻿namespace OperationsManagement.Domain._Shared.DomainEvents;
+﻿namespace ResourceExecution.Domain._Shared.DomainEvents;
 
 public interface IDomainEvent
 {

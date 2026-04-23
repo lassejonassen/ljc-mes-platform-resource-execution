@@ -1,7 +1,7 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using OperationsManagement.SharedKernel.Messaging;
+using ResourceExecution.SharedKernel.Messaging;
 
-namespace OperationsManagement.Application;
+namespace ResourceExecution.Application;
 
 public static class DependencyInjection
 {

@@ -1,3 +1,3 @@
-﻿namespace OperationsManagement.Infrastructure;
+﻿namespace ResourceExecution.Infrastructure;
 
 public partial class AssemblyReference;

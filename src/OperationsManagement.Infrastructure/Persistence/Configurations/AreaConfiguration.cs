@@ -1,8 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using OperationsManagement.Domain.Assets.Aggregates;
+using ResourceExecution.Domain.ResourceManagement.Aggregates;
 
-namespace OperationsManagement.Infrastructure.Persistence.Configurations;
+namespace ResourceExecution.Infrastructure.Persistence.Configurations;
 
 public class AreaConfiguration : IEntityTypeConfiguration<Area>
 {
@@ -25,7 +25,7 @@ public class AreaConfiguration : IEntityTypeConfiguration<Area>
                .OnDelete(DeleteBehavior.Restrict)
                .IsRequired(true);
 
-        builder.HasMany<ProcessCell>()
+        builder.HasMany<WorkCenter>()
            .WithOne()
            .HasForeignKey(x => x.AreaId)
            .OnDelete(DeleteBehavior.Cascade);

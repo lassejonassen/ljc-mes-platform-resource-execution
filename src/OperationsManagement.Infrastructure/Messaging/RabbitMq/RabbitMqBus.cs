@@ -1,9 +1,10 @@
-﻿using OperationsManagement.SharedKernel.IntegrationEvents;
-using RabbitMQ.Client;
+﻿using RabbitMQ.Client;
+using ResourceExecution.Infrastructure.Messaging;
+using ResourceExecution.SharedKernel.IntegrationEvents;
 using System.Text;
 using System.Text.Json;
 
-namespace OperationsManagement.Infrastructure.Messaging.RabbitMq;
+namespace ResourceExecution.Infrastructure.Messaging.RabbitMq;
 
 public class RabbitMqBus(IRabbitMqConnection connection, RabbitMqSettings settings) : IIntegrationEventBus
 {

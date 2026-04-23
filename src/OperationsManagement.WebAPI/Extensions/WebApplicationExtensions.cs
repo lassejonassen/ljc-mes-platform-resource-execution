@@ -1,8 +1,8 @@
 ﻿using HealthChecks.UI.Client;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
-using OperationsManagement.Infrastructure.Logging;
+using ResourceExecution.Infrastructure.Logging;
 
-namespace OperationsManagement.WebAPI.Extensions;
+namespace ResourceExecution.WebAPI.Extensions;
 
 public static class WebApplicationExtensions
 {

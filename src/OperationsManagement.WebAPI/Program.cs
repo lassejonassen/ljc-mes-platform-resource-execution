@@ -1,6 +1,6 @@
-using OperationsManagement.Application;
-using OperationsManagement.Infrastructure;
-using OperationsManagement.WebAPI.Extensions;
+using ResourceExecution.Application;
+using ResourceExecution.Infrastructure;
+using ResourceExecution.WebAPI.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 

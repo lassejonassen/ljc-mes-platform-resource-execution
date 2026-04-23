@@ -1,13 +1,13 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using OperationsManagement.Domain.Assets.Aggregates;
-using OperationsManagement.Domain.Assets.Entities;
+using ResourceExecution.Domain.ResourceManagement.Aggregates;
+using ResourceExecution.Domain.ResourceManagement.Entities;
 
-namespace OperationsManagement.Infrastructure.Persistence.Configurations;
+namespace ResourceExecution.Infrastructure.Persistence.Configurations;
 
-public class ProcessCellConfiguration : IEntityTypeConfiguration<ProcessCell>
+public class ProcessCellConfiguration : IEntityTypeConfiguration<WorkCenter>
 {
-    public void Configure(EntityTypeBuilder<ProcessCell> builder)
+    public void Configure(EntityTypeBuilder<WorkCenter> builder)
     {
         builder.ToTable("ProcessCells");
         builder.HasKey(pc => pc.Id);
@@ -33,7 +33,7 @@ public class ProcessCellConfiguration : IEntityTypeConfiguration<ProcessCell>
 
             // Link to Parent Aggregate
             unitBuilder.WithOwner()
-            .HasForeignKey(nameof(Unit.ProcessCellId));
+            .HasForeignKey(nameof(WorkUnit.ProcessCellId));
 
             unitBuilder.Property(u => u.Name)
                 .IsRequired()

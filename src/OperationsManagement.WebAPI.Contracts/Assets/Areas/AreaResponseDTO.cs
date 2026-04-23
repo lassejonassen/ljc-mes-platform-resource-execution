@@ -1,9 +1,0 @@
-﻿namespace OperationsManagement.WebAPI.Contracts.Assets.Areas;
-
-public sealed record AreaResponseDTO
-{
-    public required Guid Id { get; init; }
-    public required string Name { get; init; }
-    public string? Description { get; init; }
-    public required Guid SiteId { get; init; }
-}

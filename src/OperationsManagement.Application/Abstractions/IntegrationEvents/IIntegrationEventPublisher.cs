@@ -1,6 +1,6 @@
-﻿using OperationsManagement.SharedKernel.IntegrationEvents;
+﻿using ResourceExecution.SharedKernel.IntegrationEvents;
 
-namespace OperationsManagement.Application.Abstractions.IntegrationEvents;
+namespace ResourceExecution.Application.Abstractions.IntegrationEvents;
 
 public interface IIntegrationEventPublisher
 {

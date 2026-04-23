@@ -1,23 +1,24 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using OperationsManagement.Domain.Assets.Aggregates;
-using OperationsManagement.Domain.Assets.Repositories;
-using OperationsManagement.Infrastructure.Persistence.DbContexts;
+using OperationsManagement.Domain.ProductionExecution.Repositories;
+using ResourceExecution.Domain.ResourceManagement.Aggregates;
+using ResourceExecution.Domain.ResourceManagement.Repositories;
+using ResourceExecution.Infrastructure.Persistence.DbContexts;
 
-namespace OperationsManagement.Infrastructure.Persistence.Repositories;
+namespace ResourceExecution.Infrastructure.Persistence.Repositories;
 
 internal sealed class ProcessCellRepository(ApplicationDbContext context)
-     : Repository<ProcessCell>(context), IProcessCellRepository
+     : Repository<WorkCenter>(context), IEquipmentClassRepository
 {
-    public async Task<IReadOnlyCollection<ProcessCell>> GetAllAsync(Guid areaId, CancellationToken cancellationToken = default)
+    public async Task<IReadOnlyCollection<WorkCenter>> GetAllAsync(Guid areaId, CancellationToken cancellationToken = default)
     {
-        return await DbContext.Set<ProcessCell>()
+        return await DbContext.Set<WorkCenter>()
             .Where(x => x.AreaId == areaId)
             .ToListAsync(cancellationToken);
     }
 
-    public async Task<ProcessCell?> GetByIdAsync(Guid id, CancellationToken cancellationToken = default)
+    public async Task<WorkCenter?> GetByIdAsync(Guid id, CancellationToken cancellationToken = default)
     {
-        return await DbContext.Set<ProcessCell>()
+        return await DbContext.Set<WorkCenter>()
             .Include(x => x.Units)
             .FirstOrDefaultAsync(x => x.Id == id, cancellationToken);
     }

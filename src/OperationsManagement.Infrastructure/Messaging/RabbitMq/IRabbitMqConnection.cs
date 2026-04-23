@@ -3,7 +3,7 @@ using Polly;
 using Polly.Registry;
 using RabbitMQ.Client;
 
-namespace OperationsManagement.Infrastructure.Messaging.RabbitMq;
+namespace ResourceExecution.Infrastructure.Messaging.RabbitMq;
 
 public interface IRabbitMqConnection : IDisposable
 {

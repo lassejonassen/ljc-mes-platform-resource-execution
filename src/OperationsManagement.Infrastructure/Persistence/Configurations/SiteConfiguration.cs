@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using OperationsManagement.Domain.Assets.Aggregates;
 
-namespace OperationsManagement.Infrastructure.Persistence.Configurations;
+namespace ResourceExecution.Infrastructure.Persistence.Configurations;
 
 public class SiteConfiguration : IEntityTypeConfiguration<Site>
 {

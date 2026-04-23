@@ -1,4 +1,4 @@
-﻿namespace OperationsManagement.Contracts;
+﻿namespace ResourceExecution.Contracts;
 
 public class Class1
 {
