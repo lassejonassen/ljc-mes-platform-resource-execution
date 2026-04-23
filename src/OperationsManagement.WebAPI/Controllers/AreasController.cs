@@ -1,21 +1,21 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using OperationsManagement.Application.Assets.Sites.Commands;
-using OperationsManagement.Application.Assets.Sites.Queries;
+using OperationsManagement.Application.Assets.Areas.Commands;
+using OperationsManagement.Application.Assets.Areas.Queries;
 using OperationsManagement.WebAPI.Contracts.Assets.Areas;
-using OperationsManagement.WebAPI.Contracts.Assets.Sites;
+using OperationsManagement.WebAPI.Contracts.Assets.ProcessCells;
 
 namespace OperationsManagement.WebAPI.Controllers;
 
-[Route("/api/assets/sites")]
-public class SitesController : BaseController
+[Route("/api/assets/areas")]
+public class AreasController : BaseController
 {
-    [ProducesResponseType(typeof(SiteListResponseDTO), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(AreaListResponseDTO), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType(StatusCodes.Status500InternalServerError)]
     [HttpGet]
-    public async Task<IActionResult> GetAll(CancellationToken cancellationToken)
+    public async Task<IActionResult> GetAll([FromQuery] Guid siteId, CancellationToken cancellationToken)
     {
-        var query = new GetAllSitesQuery();
+        var query = new GetAllAreasQuery(siteId);
 
         var result = await Mediator.Send(query, cancellationToken);
 
@@ -24,14 +24,15 @@ public class SitesController : BaseController
             return NoContent();
         }
 
-        var dtos = result.Select(x => new SiteResponseDTO
+        var dtos = result.Select(x => new AreaResponseDTO
         {
             Id = x.Id,
             Name = x.Name,
             Description = x.Description,
+            SiteId = x.SiteId
         });
 
-        var _result = new SiteListResponseDTO
+        var _result = new AreaListResponseDTO
         {
             Data = dtos,
         };
@@ -39,7 +40,7 @@ public class SitesController : BaseController
         return Ok(_result);
     }
 
-    [ProducesResponseType(typeof(SiteResponseDTO), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(AreaResponseDTO), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     [ProducesResponseType(StatusCodes.Status500InternalServerError)]
@@ -47,7 +48,7 @@ public class SitesController : BaseController
     [HttpGet("{id:guid}")]
     public async Task<IActionResult> Get([FromRoute] Guid id, CancellationToken cancellationToken)
     {
-        var query = new GetSiteByIdQuery(id);
+        var query = new GetAreaByIdQuery(id);
 
         var result = await Mediator.Send(query, cancellationToken);
 
@@ -56,11 +57,12 @@ public class SitesController : BaseController
             return HandleFailure(result.Error);
         }
 
-        var _result = new SiteResponseDTO
+        var _result = new AreaResponseDTO
         {
             Id = result.Value.Id,
             Name = result.Value.Name,
             Description = result.Value.Description,
+            SiteId = result.Value.SiteId
         };
 
         return Ok(_result);
@@ -72,9 +74,9 @@ public class SitesController : BaseController
     [ProducesResponseType(StatusCodes.Status500InternalServerError)]
 
     [HttpPost]
-    public async Task<IActionResult> Create([FromBody] SiteCreateRequestDTO request, CancellationToken cancellationToken)
+    public async Task<IActionResult> Create([FromBody] AreaCreateRequestDTO request, CancellationToken cancellationToken)
     {
-        var query = new CreateSiteCommand(request.Name, request.Description);
+        var query = new CreateAreaCommand(request.SiteId, request.Name, request.Description);
 
         var result = await Mediator.Send(query, cancellationToken);
 
@@ -92,14 +94,14 @@ public class SitesController : BaseController
     [ProducesResponseType(StatusCodes.Status500InternalServerError)]
 
     [HttpPut("{id:guid}")]
-    public async Task<IActionResult> Update([FromRoute] Guid id, [FromBody] SiteUpdateRequestDTO request, CancellationToken cancellationToken)
+    public async Task<IActionResult> Update([FromRoute] Guid id, [FromBody] AreaUpdateRequestDTO request, CancellationToken cancellationToken)
     {
         if (id != request.Id)
         {
             return BadRequest("Id in route does not match Id in body.");
         }
 
-        var query = new UpdateSiteCommand(id, request.Name, request.Description);
+        var query = new UpdateAreaCommand(id, request.Name, request.Description);
 
         var result = await Mediator.Send(query, cancellationToken);
 
@@ -125,7 +127,7 @@ public class SitesController : BaseController
             return BadRequest("The id cannot be empty");
         }
 
-        var query = new DeleteSiteCommand(id);
+        var query = new DeleteAreaCommand(id);
 
         var result = await Mediator.Send(query, cancellationToken);
 

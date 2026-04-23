@@ -8,9 +8,11 @@ namespace OperationsManagement.Infrastructure.Persistence.Repositories;
 internal sealed class ProcessCellRepository(ApplicationDbContext context)
      : Repository<ProcessCell>(context), IProcessCellRepository
 {
-    public async Task<IReadOnlyCollection<ProcessCell>> GetAllAsync(CancellationToken cancellationToken = default)
+    public async Task<IReadOnlyCollection<ProcessCell>> GetAllAsync(Guid areaId, CancellationToken cancellationToken = default)
     {
-        return await DbContext.Set<ProcessCell>().ToListAsync(cancellationToken);
+        return await DbContext.Set<ProcessCell>()
+            .Where(x => x.AreaId == areaId)
+            .ToListAsync(cancellationToken);
     }
 
     public async Task<ProcessCell?> GetByIdAsync(Guid id, CancellationToken cancellationToken = default)

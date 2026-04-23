@@ -6,7 +6,7 @@ namespace OperationsManagement.Application.Assets.Sites.Queries;
 
 public sealed record GetAllSitesQuery : IRequest<List<SiteDTO>>;
 
-public sealed record GetAllSitesQueryHandler(ISiteRepository repository)
+public sealed class GetAllSitesQueryHandler(ISiteRepository repository)
     : IRequestHandler<GetAllSitesQuery, List<SiteDTO>>
 {
     public async Task<List<SiteDTO>> Handle(GetAllSitesQuery request, CancellationToken cancellationToken)

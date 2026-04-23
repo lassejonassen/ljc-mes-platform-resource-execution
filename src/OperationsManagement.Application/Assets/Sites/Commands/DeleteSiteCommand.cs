@@ -14,12 +14,12 @@ public sealed class DeleteSiteCommandHandler(
 {
     public async Task<Result> Handle(DeleteSiteCommand request, CancellationToken cancellationToken)
     {
-        var materialDefinition = await repository.GetByIdAsync(request.Id, cancellationToken);
+        var site = await repository.GetByIdAsync(request.Id, cancellationToken);
 
-        if (materialDefinition is null)
+        if (site is null)
             return Result.Failure(SiteErrors.NotFound);
 
-        repository.Delete(materialDefinition);
+        repository.Delete(site);
 
         await unitOfWork.SaveChangesAsync(cancellationToken);
 

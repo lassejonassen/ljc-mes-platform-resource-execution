@@ -3,9 +3,6 @@ using OperationsManagement.Domain.Assets.Errors;
 using OperationsManagement.Domain.Assets.Repositories;
 using OperationsManagement.SharedKernel;
 using OperationsManagement.SharedKernel.Messaging;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace OperationsManagement.Application.Assets.Areas.Commands;
 
@@ -19,21 +16,20 @@ public sealed class CreateAreaCommandHandler(
 {
     public async Task<Result<Guid>> Handle(CreateAreaCommand request, CancellationToken cancellationToken)
     {
-        throw new NotImplementedException();
-        //var isSkuUnique = await repository.IsNameUniqueAsync(request.Name, cancellationToken);
+        var isNameUnique = await repository.IsNameUniqueAsync(request.SiteId, request.Name, cancellationToken);
 
-        //if (!isSkuUnique)
-        //    return Result.Failure<Guid>(SiteErrors.AlreadyExists);
+        if (!isNameUnique)
+            return Result.Failure<Guid>(AreaErrors.AlreadyExists);
 
-        //var site = Site.Create(request.Name, request.Description, dateTimeProvider.UtcNow);
+        var area = Area.Create(request.Name, request.Description, request.SiteId, dateTimeProvider.UtcNow);
 
-        //if (site.IsFailure)
-        //    return Result.Failure<Guid>(site.Error);
+        if (area.IsFailure)
+            return Result.Failure<Guid>(area.Error);
 
-        //repository.Add(site.Value);
+        repository.Add(area.Value);
 
-        //await unitOfWork.SaveChangesAsync(cancellationToken);
+        await unitOfWork.SaveChangesAsync(cancellationToken);
 
-        //return Result.Success(site.Value.Id);
+        return Result.Success(area.Value.Id);
     }
 }

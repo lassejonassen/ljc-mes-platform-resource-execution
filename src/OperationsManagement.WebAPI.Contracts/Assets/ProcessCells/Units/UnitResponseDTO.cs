@@ -1,6 +1,6 @@
-﻿namespace OperationsManagement.Application.Assets.ProcessCells.DTOs;
+﻿namespace OperationsManagement.WebAPI.Contracts.Assets.ProcessCells.Units;
 
-public sealed class UnitDTO
+public sealed class UnitResponseDTO
 {
     public required Guid Id { get; init; }
     public required string Name { get; init; }
