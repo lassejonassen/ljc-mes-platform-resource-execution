@@ -9,35 +9,35 @@ public enum WorkUnitStatus
     /// <summary>
     /// The unit is healthy, powered on, and waiting for a job.
     /// </summary>
-    Idle = 1,
+    Idle,
 
     /// <summary>
     /// The unit is currently executing a Production Job.
     /// </summary>
-    Running = 2,
+    Running,
 
     /// <summary>
     /// The unit is stopped due to an unplanned event (breakdown, emergency stop).
     /// </summary>
-    Down = 3,
+    Down,
 
     /// <summary>
     /// The unit is undergoing planned maintenance or cleaning (CIP).
     /// </summary>
-    Maintenance = 4,
+    Maintenance,
 
     /// <summary>
     /// The unit is functional but blocked by a downstream process (e.g., full conveyor).
     /// </summary>
-    Blocked = 5,
+    Blocked,
 
     /// <summary>
     /// The unit is waiting for upstream materials or an operator.
     /// </summary>
-    Starved = 6,
+    Starved,
 
     /// <summary>
     /// The unit is being configured for a new product type (Changeover).
     /// </summary>
-    Setup = 7
+    Setup
 }

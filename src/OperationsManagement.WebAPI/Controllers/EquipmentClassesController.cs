@@ -209,7 +209,7 @@ public class EquipmentClassesController : BaseController
     [ProducesResponseType(StatusCodes.Status500InternalServerError)]
 
     [HttpDelete("{id:guid}/capabilities")]
-    public async Task<IActionResult> UpdateProperty([FromRoute] Guid id, [FromRoute] EquipmentClassCapabilityDeleteRequestDTO request, CancellationToken cancellationToken)
+    public async Task<IActionResult> UpdateProperty([FromRoute] Guid id, [FromBody] EquipmentClassCapabilityDeleteRequestDTO request, CancellationToken cancellationToken)
     {
         if (id != request.EquipmentClassId)
         {

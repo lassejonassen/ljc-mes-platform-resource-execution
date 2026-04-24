@@ -10,8 +10,7 @@ public sealed record UpdateUnitCommand(Guid WorkCenterId, Guid WorkUnitId, strin
 public sealed class UpdateUnitCommandHandler(
     IWorkCenterRepository repository,
     IEquipmentClassRepository equipmentClassRepository,
-    IUnitOfWork unitOfWork,
-    IDateTimeProvider dateTimeProvider)
+    IUnitOfWork unitOfWork)
     : IRequestHandler<UpdateUnitCommand, Result>
 {
     public async Task<Result> Handle(UpdateUnitCommand request, CancellationToken cancellationToken)
