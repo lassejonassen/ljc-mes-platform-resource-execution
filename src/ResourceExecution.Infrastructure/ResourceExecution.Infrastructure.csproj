@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
     <ItemGroup>
-        <ProjectReference Include="..\OperationsManagement.Application\ResourceExecution.Application.csproj" />
-        <ProjectReference Include="..\OperationsManagement.Domain\ResourceExecution.Domain.csproj" />
+        <ProjectReference Include="..\ResourceExecution.Application\ResourceExecution.Application.csproj" />
+        <ProjectReference Include="..\ResourceExecution.Domain\ResourceExecution.Domain.csproj" />
     </ItemGroup>
 
     <ItemGroup>

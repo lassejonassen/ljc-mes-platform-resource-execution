@@ -1,11 +1,11 @@
 services:
-  operationsmanagement.webapi:
+  ResourceExecution.webapi:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_HTTP_PORTS=8080
       - ASPNETCORE_HTTPS_PORTS=8081
       # Connection Strings & RabbitMQ
-      - ConnectionStrings__Database=Server=sqlserver;Database=OperationsManagementDB;User Id=sa;Password=Your_Password123!;TrustServerCertificate=True
+      - ConnectionStrings__Database=Server=sqlserver;Database=ResourceExecutionDB;User Id=sa;Password=Your_Password123!;TrustServerCertificate=True
       - RabbitMq__HostName=rabbitmq
       - RabbitMq__UserName=guest
       - RabbitMq__Password=guest
