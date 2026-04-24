@@ -1,6 +1,6 @@
-﻿using OperationsManagement.Domain._Shared.DomainEvents;
+﻿using ResourceExecution.Domain._Shared.DomainEvents;
 
-namespace OperationsManagement.Infrastructure.DomainEvents;
+namespace ResourceExecution.Infrastructure.DomainEvents;
 
 public interface IDomainEventPublisher
 {

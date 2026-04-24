@@ -1,4 +1,4 @@
-﻿namespace OperationsManagement.Domain._Shared;
+﻿namespace ResourceExecution.Domain._Shared;
 
 public interface IRepository<TEntity>
     where TEntity : Entity

@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using OperationsManagement.SharedKernel;
-using OperationsManagement.SharedKernel.Messaging;
+using ResourceExecution.SharedKernel;
+using ResourceExecution.SharedKernel.Messaging;
 
-namespace OperationsManagement.WebAPI.Controllers;
+namespace ResourceExecution.WebAPI.Controllers;
 
 [ApiController]
 public abstract class BaseController : ControllerBase

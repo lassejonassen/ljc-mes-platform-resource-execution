@@ -2,13 +2,13 @@
 using OpenTelemetry.Metrics;
 using OpenTelemetry.Resources;
 using OpenTelemetry.Trace;
-using OperationsManagement.Application.Abstractions;
-using OperationsManagement.Infrastructure;
-using OperationsManagement.SharedKernel;
-using OperationsManagement.SharedKernel.Messaging;
+using ResourceExecution.Application.Abstractions;
+using ResourceExecution.Infrastructure;
+using ResourceExecution.SharedKernel;
+using ResourceExecution.SharedKernel.Messaging;
 using System.Text.Json.Serialization;
 
-namespace OperationsManagement.WebAPI.Extensions;
+namespace ResourceExecution.WebAPI.Extensions;
 
 public static class WebApplicationBuilderExtensions
 {

@@ -1,6 +1,6 @@
-﻿using OperationsManagement.SharedKernel;
+﻿using ResourceExecution.SharedKernel;
 
-namespace OperationsManagement.Infrastructure;
+namespace ResourceExecution.Infrastructure;
 
 public sealed class DateTimeProvider : IDateTimeProvider
 {

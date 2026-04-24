@@ -1,4 +1,4 @@
-﻿namespace OperationsManagement.SharedKernel.IntegrationEvents;
+﻿namespace ResourceExecution.SharedKernel.IntegrationEvents;
 
 public abstract record IntegrationEvent : IIntegrationEvent
     {

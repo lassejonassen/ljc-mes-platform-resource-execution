@@ -1,4 +1,4 @@
-﻿namespace OperationsManagement.SharedKernel;
+﻿namespace ResourceExecution.SharedKernel;
 
 public class Result
 {

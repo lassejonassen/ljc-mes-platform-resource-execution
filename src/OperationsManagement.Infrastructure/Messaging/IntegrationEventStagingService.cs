@@ -1,8 +1,8 @@
-﻿using OperationsManagement.Application.Abstractions;
-using OperationsManagement.Application.Abstractions.IntegrationEvents;
-using OperationsManagement.SharedKernel.IntegrationEvents;
+﻿using ResourceExecution.Application.Abstractions;
+using ResourceExecution.Application.Abstractions.IntegrationEvents;
+using ResourceExecution.SharedKernel.IntegrationEvents;
 
-namespace OperationsManagement.Infrastructure.Messaging;
+namespace ResourceExecution.Infrastructure.Messaging;
 
 public class IntegrationEventStagingService(
     IntegrationEventBuffer buffer,

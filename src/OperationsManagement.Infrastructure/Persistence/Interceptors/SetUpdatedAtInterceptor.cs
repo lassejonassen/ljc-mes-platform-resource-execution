@@ -1,8 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Diagnostics;
-using OperationsManagement.Domain._Shared;
+using ResourceExecution.Domain._Shared;
 
-namespace OperationsManagement.Infrastructure.Persistence.Interceptors;
+namespace ResourceExecution.Infrastructure.Persistence.Interceptors;
 
 public sealed class SetUpdatedAtInterceptor : SaveChangesInterceptor
 {

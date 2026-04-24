@@ -1,8 +1,8 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using OperationsManagement.Application.Abstractions.DomainEvents;
-using OperationsManagement.Domain._Shared.DomainEvents;
+using ResourceExecution.Application.Abstractions.DomainEvents;
+using ResourceExecution.Domain._Shared.DomainEvents;
 
-namespace OperationsManagement.Infrastructure.DomainEvents;
+namespace ResourceExecution.Infrastructure.DomainEvents;
 
 public class DomainEventPublisher(IServiceProvider serviceProvider) : IDomainEventPublisher
 {

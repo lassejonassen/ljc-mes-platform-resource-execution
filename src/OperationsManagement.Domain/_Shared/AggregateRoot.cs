@@ -1,6 +1,6 @@
-﻿using OperationsManagement.Domain._Shared.DomainEvents;
+﻿using ResourceExecution.Domain._Shared.DomainEvents;
 
-namespace OperationsManagement.Domain._Shared;
+namespace ResourceExecution.Domain._Shared;
 
 public class AggregateRoot : Entity, IHasDomainEvents
 {

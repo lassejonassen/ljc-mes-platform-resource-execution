@@ -1,6 +1,6 @@
-﻿using OperationsManagement.Application.Abstractions;
+﻿using ResourceExecution.Application.Abstractions;
 
-namespace OperationsManagement.Infrastructure;
+namespace ResourceExecution.Infrastructure;
 
 // Internal interface so only Infrastructure/Presentation can set the ID
 public interface ICorrelationIdSetter

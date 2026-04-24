@@ -1,6 +1,0 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
-  <ItemGroup>
-    <ProjectReference Include="..\OperationsManagement.Contracts\OperationsManagement.Contracts.csproj" />
-    <ProjectReference Include="..\OperationsManagement.Domain\OperationsManagement.Domain.csproj" />
-  </ItemGroup>
-</Project>

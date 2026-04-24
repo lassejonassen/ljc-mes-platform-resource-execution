@@ -4,11 +4,11 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using OperationsManagement.Infrastructure.Persistence.DbContexts;
+using ResourceExecution.Infrastructure.Persistence.DbContexts;
 
 #nullable disable
 
-namespace OperationsManagement.Infrastructure.Persistence.Migrations
+namespace ResourceExecution.Infrastructure.Persistence.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
     partial class ApplicationDbContextModelSnapshot : ModelSnapshot
@@ -22,7 +22,7 @@ namespace OperationsManagement.Infrastructure.Persistence.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("OperationsManagement.Domain.Assets.Aggregates.Area", b =>
+            modelBuilder.Entity("ResourceExecution.Domain.ResourceManagement.Aggregates.EquipmentClass", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -32,57 +32,23 @@ namespace OperationsManagement.Infrastructure.Persistence.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Description")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
-                    b.Property<Guid>("SiteId")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
 
                     b.Property<DateTime>("UpdatedAtUtc")
                         .HasColumnType("datetime2");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("SiteId");
-
-                    b.ToTable("Areas", (string)null);
+                    b.ToTable("EquipmentClasses", (string)null);
                 });
 
-            modelBuilder.Entity("OperationsManagement.Domain.Assets.Aggregates.ProcessCell", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("AreaId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime>("CreatedAtUtc")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Description")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
-                    b.Property<DateTime>("UpdatedAtUtc")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("AreaId");
-
-                    b.ToTable("ProcessCells", (string)null);
-                });
-
-            modelBuilder.Entity("OperationsManagement.Domain.Assets.Aggregates.Site", b =>
+            modelBuilder.Entity("ResourceExecution.Domain.ResourceManagement.Aggregates.WorkCenter", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -92,23 +58,23 @@ namespace OperationsManagement.Infrastructure.Persistence.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Description")
-                        .HasMaxLength(500)
-                        .HasColumnType("nvarchar(500)");
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
 
                     b.Property<DateTime>("UpdatedAtUtc")
                         .HasColumnType("datetime2");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Sites", (string)null);
+                    b.ToTable("WorkCenters", (string)null);
                 });
 
-            modelBuilder.Entity("OperationsManagement.Infrastructure.Persistence.Entities.IntegrationOutboxMessage", b =>
+            modelBuilder.Entity("ResourceExecution.Infrastructure.Persistence.Entities.IntegrationOutboxMessage", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -143,7 +109,7 @@ namespace OperationsManagement.Infrastructure.Persistence.Migrations
                     b.ToTable("IntegrationOutboxMessages", (string)null);
                 });
 
-            modelBuilder.Entity("OperationsManagement.Infrastructure.Persistence.Entities.OutboxMessage", b =>
+            modelBuilder.Entity("ResourceExecution.Infrastructure.Persistence.Entities.OutboxMessage", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -176,24 +142,50 @@ namespace OperationsManagement.Infrastructure.Persistence.Migrations
                     b.ToTable("OutboxMessages", (string)null);
                 });
 
-            modelBuilder.Entity("OperationsManagement.Domain.Assets.Aggregates.Area", b =>
+            modelBuilder.Entity("ResourceExecution.Domain.ResourceManagement.Aggregates.EquipmentClass", b =>
                 {
-                    b.HasOne("OperationsManagement.Domain.Assets.Aggregates.Site", null)
-                        .WithMany()
-                        .HasForeignKey("SiteId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                    b.OwnsMany("ResourceExecution.Domain.ResourceManagement.ValueObjects.EquipmentCapability", "StandardCapabilities", b1 =>
+                        {
+                            b1.Property<int>("Id")
+                                .ValueGeneratedOnAdd()
+                                .HasColumnType("int");
+
+                            SqlServerPropertyBuilderExtensions.UseIdentityColumn(b1.Property<int>("Id"));
+
+                            b1.Property<Guid>("EquipmentClassId")
+                                .HasColumnType("uniqueidentifier");
+
+                            b1.Property<string>("Name")
+                                .IsRequired()
+                                .HasMaxLength(50)
+                                .HasColumnType("nvarchar(50)");
+
+                            b1.Property<string>("UnitOfMeasure")
+                                .IsRequired()
+                                .HasMaxLength(100)
+                                .HasColumnType("nvarchar(100)");
+
+                            b1.Property<string>("Value")
+                                .IsRequired()
+                                .HasMaxLength(100)
+                                .HasColumnType("nvarchar(100)");
+
+                            b1.HasKey("Id");
+
+                            b1.HasIndex("EquipmentClassId");
+
+                            b1.ToTable("EquipmentClassCapabilities", (string)null);
+
+                            b1.WithOwner()
+                                .HasForeignKey("EquipmentClassId");
+                        });
+
+                    b.Navigation("StandardCapabilities");
                 });
 
-            modelBuilder.Entity("OperationsManagement.Domain.Assets.Aggregates.ProcessCell", b =>
+            modelBuilder.Entity("ResourceExecution.Domain.ResourceManagement.Aggregates.WorkCenter", b =>
                 {
-                    b.HasOne("OperationsManagement.Domain.Assets.Aggregates.Area", null)
-                        .WithMany()
-                        .HasForeignKey("AreaId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.OwnsMany("OperationsManagement.Domain.Assets.Entities.Unit", "Units", b1 =>
+                    b.OwnsMany("ResourceExecution.Domain.ResourceManagement.Entities.WorkUnit", "WorkUnits", b1 =>
                         {
                             b1.Property<Guid>("Id")
                                 .ValueGeneratedOnAdd()
@@ -203,82 +195,78 @@ namespace OperationsManagement.Infrastructure.Persistence.Migrations
                                 .HasColumnType("datetime2");
 
                             b1.Property<string>("Description")
-                                .HasColumnType("nvarchar(max)");
-
-                            b1.Property<string>("Name")
-                                .IsRequired()
                                 .HasMaxLength(100)
                                 .HasColumnType("nvarchar(100)");
 
-                            b1.Property<Guid>("ProcessCellId")
+                            b1.Property<Guid>("EquipmentClassId")
                                 .HasColumnType("uniqueidentifier");
 
-                            b1.Property<Guid>("ProcessSegmentId")
-                                .HasColumnType("uniqueidentifier");
+                            b1.Property<string>("Name")
+                                .IsRequired()
+                                .HasMaxLength(20)
+                                .HasColumnType("nvarchar(20)");
 
                             b1.Property<string>("Status")
                                 .IsRequired()
-                                .HasColumnType("nvarchar(max)");
+                                .ValueGeneratedOnAdd()
+                                .HasColumnType("nvarchar(max)")
+                                .HasDefaultValue("Idle");
 
                             b1.Property<DateTime>("UpdatedAtUtc")
                                 .HasColumnType("datetime2");
 
+                            b1.Property<Guid>("WorkCenterId")
+                                .HasColumnType("uniqueidentifier");
+
                             b1.HasKey("Id");
 
-                            b1.HasIndex("ProcessCellId");
+                            b1.HasIndex("WorkCenterId");
 
-                            b1.ToTable("Units", (string)null);
+                            b1.ToTable("WorkUnits", (string)null);
 
                             b1.WithOwner()
-                                .HasForeignKey("ProcessCellId");
+                                .HasForeignKey("WorkCenterId");
 
-                            b1.OwnsOne("OperationsManagement.Domain.Assets.ValueObjects.UnsAddress", "UnsAddress", b2 =>
+                            b1.OwnsMany("ResourceExecution.Domain.ResourceManagement.ValueObjects.EquipmentCapability", "Capabilities", b2 =>
                                 {
-                                    b2.Property<Guid>("UnitId")
+                                    b2.Property<int>("Id")
+                                        .ValueGeneratedOnAdd()
+                                        .HasColumnType("int");
+
+                                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b2.Property<int>("Id"));
+
+                                    b2.Property<string>("Name")
+                                        .IsRequired()
+                                        .HasMaxLength(50)
+                                        .HasColumnType("nvarchar(50)");
+
+                                    b2.Property<string>("UnitOfMeasure")
+                                        .IsRequired()
+                                        .HasMaxLength(100)
+                                        .HasColumnType("nvarchar(100)");
+
+                                    b2.Property<string>("Value")
+                                        .IsRequired()
+                                        .HasMaxLength(100)
+                                        .HasColumnType("nvarchar(100)");
+
+                                    b2.Property<Guid>("WorkUnitId")
                                         .HasColumnType("uniqueidentifier");
 
-                                    b2.Property<string>("Area")
-                                        .IsRequired()
-                                        .HasMaxLength(100)
-                                        .HasColumnType("nvarchar(100)")
-                                        .HasColumnName("Uns_Area");
+                                    b2.HasKey("Id");
 
-                                    b2.Property<string>("Enterprise")
-                                        .IsRequired()
-                                        .HasMaxLength(100)
-                                        .HasColumnType("nvarchar(100)")
-                                        .HasColumnName("Uns_Enterprise");
+                                    b2.HasIndex("WorkUnitId");
 
-                                    b2.Property<string>("ProcessCell")
-                                        .IsRequired()
-                                        .HasMaxLength(100)
-                                        .HasColumnType("nvarchar(100)")
-                                        .HasColumnName("Uns_ProcessCell");
-
-                                    b2.Property<string>("Site")
-                                        .IsRequired()
-                                        .HasMaxLength(100)
-                                        .HasColumnType("nvarchar(100)")
-                                        .HasColumnName("Uns_Site");
-
-                                    b2.Property<string>("Unit")
-                                        .IsRequired()
-                                        .HasMaxLength(100)
-                                        .HasColumnType("nvarchar(100)")
-                                        .HasColumnName("Uns_Unit");
-
-                                    b2.HasKey("UnitId");
-
-                                    b2.ToTable("Units");
+                                    b2.ToTable("WorkUnitCapabilities", (string)null);
 
                                     b2.WithOwner()
-                                        .HasForeignKey("UnitId");
+                                        .HasForeignKey("WorkUnitId");
                                 });
 
-                            b1.Navigation("UnsAddress");
+                            b1.Navigation("Capabilities");
                         });
 
-                    b.Navigation("Units");
+                    b.Navigation("WorkUnits");
                 });
 #pragma warning restore 612, 618
         }

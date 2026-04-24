@@ -1,6 +1,6 @@
-﻿using OperationsManagement.SharedKernel.IntegrationEvents;
+﻿using ResourceExecution.SharedKernel.IntegrationEvents;
 
-namespace OperationsManagement.Infrastructure.Messaging;
+namespace ResourceExecution.Infrastructure.Messaging;
 
 public class IntegrationEventBuffer
 {

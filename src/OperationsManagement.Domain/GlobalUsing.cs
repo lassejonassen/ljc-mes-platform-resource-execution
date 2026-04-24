@@ -1,2 +1,2 @@
-﻿global using OperationsManagement.Domain._Shared;
-global using OperationsManagement.SharedKernel;
+﻿global using ResourceExecution.Domain._Shared;
+global using ResourceExecution.SharedKernel;

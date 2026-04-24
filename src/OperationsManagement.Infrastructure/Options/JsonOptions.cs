@@ -1,6 +1,6 @@
 ﻿using System.Text.Json;
 
-namespace OperationsManagement.Infrastructure.Options;
+namespace ResourceExecution.Infrastructure.Options;
 
 public static class JsonOptions
 {

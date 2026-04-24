@@ -1,4 +1,4 @@
-﻿namespace OperationsManagement.Domain._Shared;
+﻿namespace ResourceExecution.Domain._Shared;
 
 public abstract class ValueObject : IEquatable<ValueObject>
 {

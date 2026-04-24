@@ -2,12 +2,12 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using OperationsManagement.Application.Abstractions;
+using ResourceExecution.Application.Abstractions;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace OperationsManagement.Infrastructure;
+namespace ResourceExecution.Infrastructure;
 
 public sealed class GlobalExceptionHandler(
     ILogger<GlobalExceptionHandler> logger,

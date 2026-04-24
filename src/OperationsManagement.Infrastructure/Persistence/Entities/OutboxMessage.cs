@@ -1,4 +1,4 @@
-﻿namespace OperationsManagement.Infrastructure.Persistence.Entities;
+﻿namespace ResourceExecution.Infrastructure.Persistence.Entities;
 
 public class OutboxMessage
 {

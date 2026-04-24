@@ -1,4 +1,4 @@
-﻿namespace OperationsManagement.SharedKernel.Messaging;
+﻿namespace ResourceExecution.SharedKernel.Messaging;
 
 public interface IMediator
 {

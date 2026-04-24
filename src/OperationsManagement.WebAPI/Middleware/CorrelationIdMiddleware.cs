@@ -1,7 +1,7 @@
-﻿using OperationsManagement.Application.Abstractions;
-using OperationsManagement.Infrastructure;
+﻿using ResourceExecution.Application.Abstractions;
+using ResourceExecution.Infrastructure;
 
-namespace OperationsManagement.WebAPI.Middleware;
+namespace ResourceExecution.WebAPI.Middleware;
 
 public class CorrelationIdMiddleware(RequestDelegate next)
 {
