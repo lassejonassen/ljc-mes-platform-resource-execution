@@ -1,9 +1,9 @@
 services:
-  operationsmanagement.webapi:
-    image: ${DOCKER_REGISTRY-}operationsmanagement
+  ResourceExecution.webapi:
+    image: ${DOCKER_REGISTRY-}ResourceExecution
     build:
       context: .
-      dockerfile: src/OperationsManagement.WebAPI/Dockerfile
+      dockerfile: src/ResourceExecution.WebAPI/Dockerfile
     depends_on:
       sqlserver:
         condition: service_started

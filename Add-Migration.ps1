@@ -9,7 +9,7 @@ param (
 Write-Host "🚀 Starting migration: $Name" -ForegroundColor Cyan
 
 # 2. Set the variables for easy maintenance
-$InfrastructureProject = "./src/OperationsManagement.Infrastructure"
+$InfrastructureProject = "./src/ResourceExecution.Infrastructure"
 $StartupProject = $InfrastructureProject
 $OutputDir = "./Persistence/Migrations"
 

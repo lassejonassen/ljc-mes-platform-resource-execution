@@ -25,9 +25,9 @@
 
 
     <ItemGroup>
-      <ProjectReference Include="..\OperationsManagement.Application\ResourceExecution.Application.csproj" />
-      <ProjectReference Include="..\OperationsManagement.Infrastructure\ResourceExecution.Infrastructure.csproj" />
-      <ProjectReference Include="..\OperationsManagement.WebAPI.Contracts\ResourceExecution.WebAPI.Contracts.csproj" />
+      <ProjectReference Include="..\ResourceExecution.Application\ResourceExecution.Application.csproj" />
+      <ProjectReference Include="..\ResourceExecution.Infrastructure\ResourceExecution.Infrastructure.csproj" />
+      <ProjectReference Include="..\ResourceExecution.WebAPI.Contracts\ResourceExecution.WebAPI.Contracts.csproj" />
     </ItemGroup>
 
 </Project>
